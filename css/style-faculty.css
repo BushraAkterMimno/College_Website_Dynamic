@@ -1,0 +1,316 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.main{
+    margin: 0 auto;
+    display: block;
+    width: 1400px;
+    background-color: white;
+}
+
+/* menu */
+
+.header{
+    padding-bottom: 30px;
+    padding-top: 30px;
+    color: white;
+    background-color: #b29ae1;
+    position: fixed;
+    z-index: 99999;
+    top: -25px;
+    width: 1400px;
+}
+
+.logo{
+    float: left;
+    padding-left: 50px;
+    padding-top: 25px;
+}
+
+.name{
+    margin-top: 40px;
+    float: left;
+    font-size: 20px;
+}
+
+.name a{
+    text-decoration: none;
+    color: white;
+}
+
+#header{
+    background-color: #b29ae1;
+    padding:15px;
+    border-bottom: 5px solid #b29ae1;
+}
+
+#header h2{
+    color: #FFFFF1;
+    font-family: georgia;
+}
+
+#header p{
+    color: white;
+    font-family: Georgia;
+}
+
+.padding{
+    padding-left: 20px;
+}
+
+#nav{
+    background-color: #b29ae1;
+    height: 36px;
+    padding-top: 35px;
+}
+
+#nav ul{
+    background-color: #fff;
+    list-style-type: none;
+}
+
+#nav ul li{
+    float: left;
+}
+
+#nav ul li:last-child{
+    border: none;
+}
+
+#nav ul li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px 20px;
+    font-family: arial;
+}
+
+#nav ul li a:hover{
+    color: #827159;
+}
+
+#nav ul li{
+    position: relative;
+}
+
+#nav ul li ul{
+    position: absolute;
+    left: -99999px;
+}
+
+#nav ul li ul a{
+    color: black;
+}
+
+#nav ul li:hover ul{
+    left: 0;
+}
+
+#nav ul li li:first-child{
+    border-top: 1px solid #1a0e71;
+}
+
+#nav ul .dropdown{
+    width: 900px;
+    color: black;
+    height: 600px;
+}
+
+#nav ul li li{
+    float: none;
+    border-right: none;
+    border-bottom: 1px solid #1a0e71;
+    width: 200px;
+}
+
+.button{
+    margin-top: 40px;
+    margin-left: 10px;
+    background-color: transparent;
+}
+
+.modal h1{
+    color: black;
+}
+
+.modal a{
+    text-decoration: none;
+    font-size: 21px;
+    padding-left: 50px;
+}
+
+/* section bg */
+
+.min{
+    margin-top: 130px;
+}
+
+.min{
+    display: block;
+}
+
+.bg_pic img{
+    height: 700px;
+}
+
+.text{
+    margin-top: 100px;
+}
+
+.text h3{
+    margin-left: 20px;
+    font-size: 60px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(2, 2, 2, 5);
+}
+
+.img h1{
+    padding-top: 340px;
+    color: white;
+    text-shadow: 5px 5px 5px rgba(2, 2, 2, 5);
+    margin-right: 30px;
+}
+
+.Professor{
+    text-align: center;
+    background-color:#3D3256;
+    width:1270px;
+    height: 70px;
+    padding-top: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.faculty-container{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    padding: 20px 0px;
+}
+
+.faculty-card{
+    background-color: white;
+    padding: 15px;
+    text-align:center;
+    border:1px solid gray;
+    width: 390px;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.faculty-card:hover{
+    transform: scale(1.03);
+    color:rgb(113, 98, 167);
+}
+
+.faculty-card img{
+    width: 100%;
+    height: auto;
+}
+
+.faculty-card h3{
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.faculty-card p{
+    color: gray;
+    font-size: 14px;
+}
+
+.social-links a{
+    margin: 0 5px;
+}
+.Associate-Professors{
+    text-align: center;
+    background-color:#3D3256;
+    width:1270px;
+    height: 70px;
+    padding-top: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.Assistant-Professors{
+    text-align: center;
+    background-color:#3D3256;
+    width:1270px;
+    height: 70px;
+    padding-top: 10px;
+    color: white;
+    border-radius: 5px;
+}   
+
+.Lecturers{
+  text-align: center;
+    background-color:#3D3256;
+    width:1270px;
+    height: 70px;
+    padding-top: 10px;
+    border-radius: 5px;
+    color: white;    
+}
+
+ /* footer */
+
+ .footer{
+    background-color: #b29ae1;
+    color: darkslateblue;
+    padding-top: 50px;
+    margin-top: 50px;
+}
+
+.footer a{
+    text-decoration: none;
+    color: darkslateblue;
+}
+
+.footer .about_padding{
+    padding-left: 50px;
+}
+
+.footer .page_padding{
+    padding-left: 200px;
+}
+
+.footer .social_padding{
+    padding-left: 200px;
+}
+
+.footer .media{
+    font-size: 30px;
+    padding-left: 10px;
+}
+
+.fa-facebook-f{
+    color: blue;
+    padding-top: 10px;
+}
+
+.fa-x-twitter{
+    padding-top: 10px;
+}
+
+.footer img{
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.fa-youtube{
+    color: red;
+    padding-top: 20px;
+}
+
+.footer2 p{
+    padding-left: 100px;
+}
+
+.footer2 .right{
+    padding-left: 800px;
+}
+
+.footer2{
+    padding-bottom: 10px;
+}

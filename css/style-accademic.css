@@ -1,0 +1,52 @@
+.min{
+display: block;
+    background-color: gainsboro;
+}
+.main{
+    
+    display: block;
+}
+.img h1{
+    padding-top: 190px;
+    color: white;
+    text-align: center;
+    margin-right: 30px;
+ font-size: 50px;
+}
+.img h2 {
+    padding-bottom: 200px;
+    color: white;
+    text-align: center;
+    margin-right: 30px;
+ font-size: 50px;
+}
+.img h2 p {
+    text-align: justify;
+    color: white;
+    font-size: 30px;
+    padding-top: 240px;
+}
+
+    
+
+.Academics{
+    text-align: center;
+    background-color:#3D3256;
+    width:1300px;
+    height: 70px;
+    padding-top: 10px;
+    color: white;
+    border-radius: 5px;
+}
+.card{
+ height: 700px;
+}
+.card-body{
+ width: auto;
+ height: 800px;
+}
+
+.pic{
+ background-color: bisque;
+ 
+}
