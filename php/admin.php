@@ -27,6 +27,7 @@
             height: 560px;
             width: 460px;
             border-radius: 10px;
+            /* opacity: 0.5; */
         }
         button {
             margin: 20px;
@@ -34,9 +35,6 @@
             border: 1px solid #ddd;
             background-color: transparent;
         }
-        /* .first_btn{
-            margin-top: 70px;
-        } */
         button b{
             color: white;
         }
