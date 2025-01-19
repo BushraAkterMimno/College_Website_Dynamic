@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply Form</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            width: 500px;
+            height: 650px;
+            margin: 70px auto;
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
-        <img src="img/logo/menu-logo.pnj" height="40px" width="40px">
+        <img src="img/logo/menu-logo.png" height="40px" width="40px">
         <p><b>BHRS COLLEGE</b></p>
         <h2>Apply Form</h2>
         <h4>Fillup the form and Submit to the committee</h4>
