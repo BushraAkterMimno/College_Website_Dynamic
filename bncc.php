@@ -314,7 +314,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc1.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc1.jpg" alt="img" class="img">
         </div>
        </div>
              </div>
@@ -325,7 +325,7 @@
       <div class="row">
         
            <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc5.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc5.jpg" alt="img" class="img">
             
              </div>
         </div>
@@ -373,7 +373,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc2.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc2.jpg" alt="img" class="img">
             
              </div>
         </div>
@@ -384,7 +384,7 @@
     <div class="container">
       <div class="row">
            <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc4.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc4.jpg" alt="img" class="img">
             
              </div>
         </div>
@@ -416,7 +416,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc3.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc3.jpg" alt="img" class="img">
             
              </div>
         </div>
@@ -427,7 +427,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-      <img src="../img/co-curricolam-img/bncc/bncc6.jpg" alt="img" class="img">
+      <img src="img/co-curricolam-img/bncc/bncc6.jpg" alt="img" class="img">
             
              </div>
         </div>
