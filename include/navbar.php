@@ -13,25 +13,25 @@
                                 <li class="padding"><a href="home.php">Home</a></li>
                                 <li><a href="#">About Us &raquo;</a>
                                     <ul>
-                                        <li><a href="about/brief-history.php">Brief History</a></li>
-                                        <li><a href="about/gallery.php">Gallery</a></li>
+                                        <li><a href="brief-history.php">Brief History</a></li>
+                                        <li><a href="gallery.php">Gallery</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Academic &raquo;</a>
                                     <ul>
-                                        <li><a href="academic/Degree(Pass).php">DEGREE (PASS)</a></li>
-                                        <li><a href="academic/Honours.php">HONORS</a></li>
-                                        <li><a href="academic/master.php">MASTER'S</a></li>
+                                        <li><a href="Degree(Pass).php">DEGREE (PASS)</a></li>
+                                        <li><a href="Honours.php">HONORS</a></li>
+                                        <li><a href="master.php">MASTER'S</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Co-Curriculum &raquo;</a>
                                     <ul>
-                                        <li><a href="co-curriculum/hostel-info.php">Hostel Information</a></li>
-                                        <li><a href="co-curriculum/library-info.php">Library Information</a></li>
-                                        <li><a href="co-curriculum/bncc.php">BNCC</a></li>
-                                        <li><a href="co-curriculum/debate-club.php">Debating Society</a></li>
-                                        <li><a href="co-curriculum/computer-lab.php">Computer Lab</a></li>
-                                        <li><a href="co-curriculum/science-lab.php">Science lab</a></li>
+                                        <li><a href="hostel-info.php">Hostel Information</a></li>
+                                        <li><a href="library-info.php">Library Information</a></li>
+                                        <li><a href="bncc.php">BNCC</a></li>
+                                        <li><a href="debate-club.php">Debating Society</a></li>
+                                        <li><a href="computer-lab.php">Computer Lab</a></li>
+                                        <li><a href="science-lab.php">Science lab</a></li>
                                     </ul>
                             </li>
                                 <li><a href="faculty.php">Faculty</a></li>
