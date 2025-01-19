@@ -329,7 +329,7 @@
 
          <!-- footer start -->
 
-         <?php include("php/include/footer.php") ?>
+         <?php include("include/footer.php") ?>
 
          <!-- footer end -->
 
