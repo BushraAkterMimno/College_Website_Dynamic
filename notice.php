@@ -295,7 +295,7 @@
 
     <!-- menu start -->
 
-        <?php include("php/include/navbar.php") ?>
+        <?php include("include/navbar.php") ?>
 
         <!-- menu end -->
 
@@ -634,7 +634,7 @@
 
 <!-- footer start -->
 
-<?php include("php/include/footer.php") ?>
+<?php include("include/footer.php") ?>
 
 <!-- footer end -->
     

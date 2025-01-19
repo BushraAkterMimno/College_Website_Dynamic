@@ -27,7 +27,7 @@
         
         <!-- menu start -->
 
-        <?php include("php/include/navbar.php") ?>
+        <?php include("include/navbar.php") ?>
 
         <!-- menu end -->
 
