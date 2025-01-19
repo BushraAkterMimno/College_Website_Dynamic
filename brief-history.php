@@ -169,7 +169,7 @@
         
     .header2
         {
-        background-image:url(../img/about-us/breif-history/bg8.jfif);
+        background-image:url(img/about-us/breif-history/bg8.jfif);
         height:600px;
         width: 100%;
         background-size: cover;
@@ -278,7 +278,7 @@
 
     <!-- menu start -->
 
-    <?php include("../php/include/navbar.php") ?>
+    <?php include("include/navbar.php") ?>
 
     <!-- menu end -->
 
@@ -303,11 +303,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-        <img src="../img/about-us/breif-history/abt.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/abt.jpg" alt="img" class="img">
               
                </div>
              <div class="col-md-6">
-        <img src="../img/about-us/breif-history/lb5.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/lb5.jpg" alt="img" class="img">
               
                </div>
            
@@ -319,11 +319,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-        <img src="../img/about-us/breif-history/lb1.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/lb1.jpg" alt="img" class="img">
               
                </div>
              <div class="col-md-6">
-        <img src="../img/about-us/breif-history/images.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/images.jpg" alt="img" class="img">
               
                </div>
             
@@ -372,11 +372,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-        <img src="../img/about-us/breif-history/bg7.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/bg7.jpg" alt="img" class="img">
               
                </div>
              <div class="col-md-6">
-        <img src="../img/about-us/breif-history/oip1.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/oip1.jpg" alt="img" class="img">
               
                </div>
              
@@ -388,11 +388,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-        <img src="../img/about-us/breif-history/R2.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/R2.jpg" alt="img" class="img">
               
                </div>
              <div class="col-md-6">
-        <img src="../img/about-us/breif-history/db6.jpg" alt="img" class="img">
+        <img src="img/about-us/breif-history/db6.jpg" alt="img" class="img">
               
                </div>
              
@@ -441,7 +441,7 @@
 
               <!-- footer start -->
 
-              <?php include("../php/include/footer.php") ?>
+              <?php include("include/footer.php") ?>
   
   <!-- footer end -->
   </div>
