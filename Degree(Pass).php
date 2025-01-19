@@ -11,11 +11,11 @@
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- wow -->
-    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="css/animate.css">
 
 
     <!-- wow -->
-  <script src="../js/wow.js"></script>
+  <script src="js/wow.js"></script>
   <script>
   new WOW().init();
   </script>
@@ -301,73 +301,7 @@ body{
 
             <!-- menu start -->
 
-        <section class="header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="wow bounceInUp logo logo" data-wow-duration="2s">
-                            <a href="../home.html"><img src="../img/logo/menu-logo.png" height="70px" width="70px"></a>
-                        </div>
-                        <div class="name">
-                            <strong><p><a href="../home.html">BHRS COLLEGE</a></p></strong>
-                        </div>
-                        <div id="nav">
-                            <ul>
-                                <li class="padding"><a href="../home.html">Home</a></li>
-                                <li><a href="#">About Us &raquo;</a>
-                                    <ul>
-                                        <li><a href="../about/breif-history.html">Brief History</a></li>
-                                        <li><a href="../about/gallery.html">Gallery</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Accademic &raquo;</a>
-                                    <ul>
-                                        <li><a href="Degree (Pass).html">DEGREE (PASS)</a></li>
-                                        <li><a href="Honours.html">HONORS</a></li>
-                                        <li><a href="master.html">MASTER'S</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Co-Curricolam &raquo;</a>
-                                    <ul>
-                                        <li><a href="../co-curricolam/hostel info.html">Hostel Information</a></li>
-                                        <li><a href="../co-curricolam/librery info.html">Library Information</a></li>
-                                        <li><a href="../co-curricolam/bncc.html">BNCC</a></li>
-                                        <li><a href="../co-curricolam/debate club.html">Debating Society</a></li>
-                                        <li><a href="../co-curricolam/computer lab.html">Computer Lab</a></li>
-                                        <li><a href="../co-curricolam/science lab.html">Science lab</a></li>
-                                    </ul>
-                            </li>
-                                <li><a href="../faculty.html">Faculty</a></li>
-                                <li><a href="../notice.html">Notice</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            APPLY NOW
-                          </button>
-
-                          <!-- Modal -->
-                          <div class="modal fade modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Apply Now</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe0HzmSoscSLtcJtWcbGOdaVCEzeJqzbdsbhAJUX-D5RYp_A/viewform"><input type="radio">Degree</a><br>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe0HzmSoscSLtcJtWcbGOdaVCEzeJqzbdsbhAJUX-D5RYp_A/viewform"><input type="radio">Honour's</a><br>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfe0HzmSoscSLtcJtWcbGOdaVCEzeJqzbdsbhAJUX-D5RYp_A/viewform"><input type="radio">Master's</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <?php include("include/navbar.php") ?>
 
         <!-- menu end -->
 
@@ -376,7 +310,7 @@ body{
         <div class="main">
          <div class="row">
             <div class="col-md-12">
-              <div class="img" style="background-image: url('../img/accademic/bg.jpg'); background-size: cover; background-position: center; height: 640px; width: auto">
+              <div class="img" style="background-image: url('img/accademic/bg.jpg'); background-size: cover; background-position: center; height: 640px; width: auto">
                <marquee><h1>WLLCOME TO </h1><h2> BHRS UNVIRESTY</h2></marquee>  
                  <div class="title-area gradient-bg-1">
                     <p> <span class="special-break"></span><span class="typer" id="main" data-words="Degree (Pass). Programme" data-colors="white" data-delay="100" data-deleteDelay="1000"></span><span class="cursor" data-owner="main"></span></p>
@@ -406,10 +340,10 @@ body{
     <div class="container SidePadding">
         <div class="row">
          <div class="col-md-4">
-                <img class="img" style="height: 300px; width: 100%;object-fit: cover;" src="../img/accademic/deg1.jpg">
+                <img class="img" style="height: 300px; width: 100%;object-fit: cover;" src="img/accademic/deg1.jpg">
             </div>
             <div class="col-md-8">
-                <img class="img" style="height: 300px; width: 100%;object-fit: cover;" src="../img/accademic/deg2.jfif">
+                <img class="img" style="height: 300px; width: 100%;object-fit: cover;" src="img/accademic/deg2.jfif">
             </div>
         </div>
         <div class="card">
@@ -417,7 +351,7 @@ body{
                 <div class="row">
                     <div class="col-md-4">
                         <div align="left" style="padding-left: 20px">
-                            <p style="font-size: 26px"> At The Aacademic programs </p>
+                            <p style="font-size: 26px"> At The Academic programs </p>
                         </div>
                         <div class="list-group list-group-flush">
                             <a href="" class="acdemicsMenuStyle newA  linkStyle list-group-item list-group-item-action" ng-click="findCategoryWise(2)">Academic Calendars</a>
@@ -484,7 +418,7 @@ body{
 
      <!-- footer start -->
 
-     <?php include("../php/include/footer.php") ?>
+     <?php include("include/footer.php") ?>
   
   <!-- footer end -->
     
