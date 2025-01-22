@@ -1,3 +1,17 @@
+<?php require 'db.php' ?>
+<?php 
+session_start();
+if(isset($_GET['logout'])){
+    unset($_SESSION["admin_id"]);
+    unset($_SESSION["admin_name"]);
+    header('location:index.php');
+}
+if(isset($_SESSION["admin_id"])==false){
+    header('location:index.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +44,7 @@
             /* opacity: 0.5; */
         }
         button {
-            margin: 20px;
+            margin: 10px;
             width: 250px;
             border: 1px solid #ddd;
             background-color: transparent;
@@ -51,15 +65,16 @@
         <section class="background">
                 <img src="../img/logo/menu-logo.png" height="50px" width="50px">
                 <p><b>BHRS COLLEGE</b></p>
-            <button type="button" class="btn btn-lg first_btn"><b>Add Teacher <i class="fa-solid fa-user-plus"></i></b></button>
+            <a href="add-teacher.php"><button type="button" class="btn btn-lg first_btn"><b>Add Teacher <i class="fa-solid fa-user-plus"></i></b></button></a>
             <br>
-            <button type="button" class="btn btn-lg"><b>Manage Teacher</b></button>
+            <a href="manage-teacher.php"><button type="button" class="btn btn-lg"><b>Manage Teacher</b></button></a>
             <br>
-            <button type="button" class="btn btn-lg"><b>Add Notice <i class="fa-duotone fa-solid fa-file-lines"></i></b></button>
+            <a href="add-notice.php"><button type="button" class="btn btn-lg"><b>Add Notice <i class="fa-duotone fa-solid fa-file-lines"></i></b></button></a>
             <br>
-            <button type="button" class="btn btn-lg"><b>Manage Notice <i class="fa-duotone fa-regular fa-memo-circle-info"></i><b></button>
+            <a href="manage-notice.php"><button type="button" class="btn btn-lg"><b>Manage Notice <i class="fa-duotone fa-regular fa-memo-circle-info"></i><b></button></a>
             <br>
-            <button type="button" class="btn btn-lg"><b>Add & Delete Photo <i class="fa-solid fa-image"></i></b></button>
+            <a href="add-photo.php"><button type="button" class="btn btn-lg"><b>Add & Delete Photo <i class="fa-solid fa-image"></i></b></button></a>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
         </section>
     </div>
 </body>
