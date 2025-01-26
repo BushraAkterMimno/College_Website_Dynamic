@@ -23,21 +23,43 @@ if(isset($_SESSION["admin_id"])==false){
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        body {
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-        .main {
-            width: 500px;
+        body {
+            font-family: Arial, sans-serif;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 0 10px;
+            color: white;
+        }
+        body::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('../img/gallery-img/bgc-pic.png');
+            background-position: center;
+            background-size: cover;
+            z-index: -1
+        }
+        .wrapper {
+            width: 600px;
             height: 600px;
             margin: 70px auto;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid #ffffff80;
             padding: 20px;
             border-radius: 10px;
+            backdrop-filter: blur(8px);
         }
         .background{
-            background-image: url('../img/gallery-img/bgc-pic.png');
-            background-size: cover;
             height: 560px;
             width: 460px;
             border-radius: 10px;
@@ -58,10 +80,14 @@ if(isset($_SESSION["admin_id"])==false){
         p b{
             color: white;
         }
+        .logout b{
+            color: red;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <div class="main">
+    <div class="wrapper">
         <section class="background">
                 <img src="../img/logo/menu-logo.png" height="50px" width="50px">
                 <p><b>BHRS COLLEGE</b></p>
