@@ -10,7 +10,8 @@ if(isset($_SESSION["admin_id"])==false){
     header('location:index.php');
 }
 ?>
-<?php 
+
+<?php  
 $student_sl = $_GET['s_id'];
 $sql = "SELECT * FROM teachers_information WHERE Member_Id='$student_sl'";
 $s_data = mysqli_query($conn,$sql);
@@ -22,7 +23,7 @@ $s_show_data = mysqli_fetch_assoc($s_data);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Notice</title>
+    <title>Edit Teacher</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
@@ -78,9 +79,10 @@ $s_show_data = mysqli_fetch_assoc($s_data);
         if(isset($_POST['btn'])){
             $userName = $_POST['name'];
             $userDescription = $_POST['description'];
-            $userDesignation = $_POST['designation'];
-            $userMobileNumber = $_POST['mobile_number'];
             $userFbLink = $_POST['fb_link'];
+            $userXLink = $_POST['x_link'];
+            $userMobileNumber = $_POST['mobile_number'];
+            $userDesignation = $_POST['designation'];
             $userPubInfo = $_POST['pub_info'];
 
             $sql = "Update team_member_info SET name='$userName',description='$userDescription',designation='$userDesignation',mobile_number='$userMobileNumber',fb_link='$userFbLink',pub_info='$userPubInfo' WHERE Member_Id='$student_sl'";
@@ -94,7 +96,7 @@ $s_show_data = mysqli_fetch_assoc($s_data);
     ?>
         
        <div class="container">
-            <h2>Edit Team Member Info</h2>
+            <h2>Edit Teacher Information</h2>
 
             <?php 
             if(isset($msg)){
@@ -105,25 +107,33 @@ $s_show_data = mysqli_fetch_assoc($s_data);
 
             <form action="" method="post">
                 <div class="form-group">
-                    
                     <input type="text" value="<?php echo $s_show_data['name']; ?>" name="name" class="form-control"  placeholder="Name">
                 </div>
+
                 <div class="form-group">
-                    
                     <textarea class="form-control" name="description" rows="3" value="<?php echo $s_show_data['description']; ?>" placeholder="Description"></textarea>
                 </div>
+
                 <div class="form-group">
-                    
-                    <input type="text" value="<?php echo $s_show_data['designation']; ?>" name="designation" class="form-control"  placeholder="Designation">
-                </div>
-                 <div class="form-group">
-                    
-                    <input type="number" value="<?php echo $s_show_data['mobile_number']; ?>" name="mobile_number" class="form-control"  placeholder="Mobile Number">
-                </div>
-                <div class="form-group">
-                    
                     <input type="text" value="<?php echo $s_show_data['fb_link']; ?>" name="fb_link" class="form-control"  placeholder="Facebook Profile Link">
                 </div>
+
+                <div class="form-group">
+                    <input type="text" value="<?php echo $s_show_data['x_link']; ?>" name="x_link" class="form-control"  placeholder="X Profile Link">
+                </div>
+
+                 <div class="form-group">
+                    <input type="number" value="<?php echo $s_show_data['mobile_number']; ?>" name="mobile_number" class="form-control"  placeholder="Mobile Number">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" value="<?php echo $s_show_data['designation']; ?>" name="designation" class="form-control"  placeholder="Designation">
+                </div>
+
+                <div class="form-group">
+                    <input type="file" value="<?php echo $s_show_data['photo']; ?>" name="photo" class="form-control">
+                </div>
+
                 <div class="form-group">
                     <select class="form-control" name="pub_info">
                         <option value="1">Published</option>

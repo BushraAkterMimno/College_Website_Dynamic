@@ -1,3 +1,16 @@
+<?php require 'db.php' ?>
+<?php 
+session_start();
+if(isset($_GET['logout'])){
+    unset($_SESSION["admin_id"]);
+    unset($_SESSION["admin_name"]);
+    header('location:index.php');
+}
+if(isset($_SESSION["admin_id"])==false){
+    header('location:index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +30,27 @@
             margin-right: 120px;
             color: white;
         }
+        .container{
+          margin-top: 100px;
+        }
+        .form-group{
+            margin: 10px
+        }
+        .logout{
+            float: right;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: red;
+        }
+        button a{
+            text-decoration: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top nav-color">
+<!-- <nav class="navbar navbar-dark fixed-top nav-color">
   <div class="container-fluid">
     <a class="navbar-brand" href="admin.php"><img src="../img/logo/menu-logo.png" height="40px" width="40px"><b>  BHRS COLLEGE</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
@@ -52,7 +82,52 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> -->
+
+
+<?php 
+        if(isset($_POST['btn'])){
+            $userHeadline = $_POST['headline'];
+            $userDescription = $_POST['description'];
+            $userImage = $_POST['image'];
+
+            $sql = "INSERT INTO notice (headline,description,image,,) VALUES ('$userHeadline','$userDescription','$userImage')";
+
+            $insertdata = mysqli_query($conn,$sql);
+            if($insertdata){
+                $msg = "Data Insert Successfully";
+            }
+        }
+    ?>
+        
+       <div class="container">
+            <h2>Add Notice</h2>
+
+            <?php 
+            if(isset($msg)){
+                echo $msg;
+                unset($msg);
+            }
+            ?>
+
+            <form action="" method="post">
+                <div class="form-group">
+                    <input type="text" name="headline" class="form-control"  placeholder="Headline">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="description" rows="3" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="designation" class="form-control"  placeholder="Image">
+                </div>
+                <button class="btn btn-primary" type="submit" name="btn">Add Notice</button>
+            </form>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
+            
+        </div>
+
+
+
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

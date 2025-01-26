@@ -1,3 +1,6 @@
+<?php
+require 'admin/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -317,18 +320,12 @@ display: block;
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (1).jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (1).jpg" alt=""/></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (2).jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (2).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (3).jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (3).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (4).jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (4).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (5).jpeg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (5).jpeg" alt=""/></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (7).jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (7).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (8).jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (8).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (9).jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (9).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (10).jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (10).jpg" alt=""/></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (11).jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (11).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (12).jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (12).jpg" alt="" /></a>
-                <a class="example-image-link" href="img/about-us/gellary/gellary-pic (13).jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (13).jpg" alt="" /></a>
+                <?php $img_sql= mysqli_query($conn,"SELECT * FROM photo");
+                ?>
+                <?php while($photo_info=mysqli_fetch_assoc($img_sql)){ ?>
+                <a class="example-image-link" href="img/gallery-img/<?php echo $photo_info['photo']; ?>" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/gallery-img/<?php echo $photo_info['photo']; ?>" alt=""/></a>
+                <?php } ?>
+                
             </div>
         </div>
     </div>
