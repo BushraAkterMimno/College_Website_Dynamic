@@ -81,8 +81,8 @@ if(isset($_SESSION["admin_id"])==false){
             color: white;
         }
         .logout b{
-            color: red;
             text-decoration: none;
+            color: red;
         }
     </style>
 </head>
@@ -100,7 +100,7 @@ if(isset($_SESSION["admin_id"])==false){
             <a href="manage-notice.php"><button type="button" class="btn btn-lg"><b>Manage Notice <i class="fa-duotone fa-regular fa-memo-circle-info"></i><b></button></a>
             <br>
             <a href="add-photo.php"><button type="button" class="btn btn-lg"><b>Add & Delete Photo <i class="fa-solid fa-image"></i></b></button></a>
-            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
+            <button class="logout"><a href="index.php"><h5><b>LogOut</b></h5></a></button>
         </section>
     </div>
 </body>
