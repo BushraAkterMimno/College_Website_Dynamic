@@ -1,4 +1,5 @@
-<?php require 'db.php' ?>
+<?php require 'db.php' 
+?>
 <?php 
 session_start();
 if(isset($_GET['logout'])){
@@ -8,6 +9,13 @@ if(isset($_GET['logout'])){
 }
 if(isset($_SESSION["admin_id"])==false){
     header('location:index.php');
+}
+?>
+
+<?php 
+$tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
+if (!$tabledata) {
+    die("Error fetching data: " . mysqli_error($conn));
 }
 ?>
 
@@ -31,6 +39,9 @@ if(isset($_SESSION["admin_id"])==false){
         .nav-color button{
             margin-right: 120px;
             color: white;
+        }
+        h2{
+          margin-top: 100px;
         }
         table {
             width: 70%;
@@ -90,47 +101,53 @@ if(isset($_SESSION["admin_id"])==false){
   </div>
 </nav>
 
-<h2 style="text-align:center;">Teacher Information</h2>
-    <table id="content">
-        <tr align="center">
+<h2 style="text-align:center;">Teacher's Information Table</h2>
+<table id="content" border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+    <thead>
+        <tr>
             <th>Teacher Id</th>
             <th>Name</th>
             <th>Designation</th>
-            <th>Public Info</th>
             <th>Photo</th>
+            <th>Pub Info</th>
             <th>Action</th>
         </tr>
+    </thead>
+    <tbody>
         <?php 
-        $i = 0;
-        if (mysqli_num_rows($table_data) > 0) {
-            while ($show_data = mysqli_fetch_assoc($table_data)) { 
-        ?>
-        <tr align="center">
-            <td><?php echo ++$i; ?></td>
-            <td><?php echo htmlspecialchars($show_data['Name']); ?></td>
-            <td><?php echo htmlspecialchars($show_data['Designation']); ?></td>
-            <td>
-                <?php echo $show_data['Pub_Info'] == 1 ? 'Published' : 'Unpublished'; ?>
-            </td>
-            <td><?php echo htmlspecialchars($show_data['photo']); ?></td>
-            <td>
-                <a href="?action=delete&id=<?php echo htmlspecialchars($show_data['Member_Id']); ?>" onclick="return confirm('Are you sure you want to delete this record?')">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-                <a href="edit.php?s_id=<?php echo htmlspecialchars($show_data['Member_Id']); ?>">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-            </td>
-        </tr>
-        <?php 
-            } 
-        } else { 
-        ?>
-        <tr>
-            <td colspan="5" align="center">No records found</td>
-        </tr>
+        $i = 0; 
+        while ($show_data = mysqli_fetch_assoc($tabledata)) { ?>
+            <tr>
+                <td><?php echo ++$i; ?></td>
+                <td><?php echo htmlspecialchars($show_data['Name'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td><?php echo htmlspecialchars($show_data['Designation'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td>
+                    <img src="../img/<?php echo htmlspecialchars($show_data['image'], ENT_QUOTES, 'UTF-8'); ?>" 
+                         alt="Image" 
+                         style="width:100px; height:100px; object-fit:cover;">
+                </td>
+                <td class="<?php echo ($show_data['Pub_Info'] == 1) ? 'published' : 'unpublished'; ?>">
+                    <?php echo ($show_data['Pub_Info'] == 1) ? 'Published' : 'Unpublished'; ?>
+                </td>
+                <td>
+                    <!-- Delete Link -->
+                    <a href="?action=delete&id=<?php echo htmlspecialchars($show_data['Teachers_Id'], ENT_QUOTES, 'UTF-8'); ?>"
+                       onclick="return confirm('Are you sure you want to delete this record?');"
+                       aria-label="Delete Teacher Record">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                    <!-- Edit Link -->
+                    <a href="edit-teacher.php?teachers_id=<?php echo htmlspecialchars($show_data['Teachers_Id'], ENT_QUOTES, 'UTF-8'); ?>"
+                       aria-label="Edit Teacher Record">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </td>
+            </tr>
         <?php } ?>
-    </table>
+    </tbody>
+</table>
+
 
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

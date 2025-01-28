@@ -1,4 +1,4 @@
-<?php require 'db.php' ?>
+<?php require 'db.php'; ?>
 <?php 
 session_start();
 if(isset($_GET['logout'])){
@@ -53,69 +53,104 @@ if(isset($_SESSION["admin_id"])==false){
     </style>
 </head>
 <body>
-<!-- <nav class="navbar navbar-dark fixed-top nav-color">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="admin.php">
-            <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
-            <div class="offcanvas-header">
-                <h5>BHRS COLLEGE</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
-                    <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
-                    <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
-                    <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
-                    <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
-                </ul>
+    <nav class="navbar navbar-dark fixed-top nav-color">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="admin.php">
+                <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
+                <div class="offcanvas-header">
+                    <h5>BHRS COLLEGE</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
+                        <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
+                        <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
+                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav> -->
+    </nav>
+
 
 
 <?php 
-        if(isset($_POST['btn'])){
-            // $userPhoto = $_POST['photo'];
-            $userName = $_POST['name'];
-            $userDescription = $_POST['description'];
-            $userFbLink = $_POST['fb_link'];
-            $userXLink = $_POST['x_link'];
-            $userMobileNumber = $_POST['mobile_number'];
-            $userDesignation = $_POST['designation'];
-            $userPubInfo = $_POST['pub_info'];
-
-            $sql = "INSERT INTO teachers_information (
-            photo,
-            name,
-            description,
-            fb_link,
-            x_link,
-            mobile_number,
-            designation,
-            pub_info
-            ) VALUES (
-            '$userPhoto ',
-            '$userName',
-            '$userDescription',
-            '$userFbLink',
-            '$userMobileNumber',
-            '$userDesignation',
-            '$userPubInfo'
-            )";
-
-            $insertdata = mysqli_query($conn,$sql);
-            if($insertdata){
-                $msg = "Data Insert Successfully";
+       if (isset($_POST['btn'])) {
+        $name = $_POST['name'];
+        $des = $_POST['description'];
+        $fb_link = $_POST['fb_link'];
+        $x_link = $_POST['x_link'];
+        $m_number = $_POST['mobile_number'];
+        $designation = $_POST['designation'];
+        $pub_info = $_POST['pub_info'];
+    
+        // handle the image upload
+        $directory = '../img/';
+        $target_file = $directory . basename($_FILES['img']['name']);
+        $main_file = basename($_FILES['img']['name']);
+        $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+        $file_size = $_FILES['img']['size'];
+        $img = $_FILES['img']['tmp_name'];
+    
+        if (empty($img)) {
+            echo '<p>Please select an image.</p>';
+        }
+        else{
+            if (file_exists($target_file)) {
+                echo '<p>Image already exists.</p>';
+            }
+            else {
+                if ($file_size > 2097152) { // 2MB limit
+                    echo '<p>File size is too large. Maximum size is 2MB.</p>';
+                }
+                else {
+                    if ($file_type != 'jpg' && $file_type != 'png') {
+                        echo '<p>Please select a JPG or PNG image.</p>';
+                    }
+                    else {
+                        // move the uploaded file to the target directory
+                        if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                            // insert data into the database
+                            $insert_data = mysqli_query($conn, "INSERT INTO  teachers_information  (
+                            image,
+                            Name,
+                            Description,
+                            FB_Link,
+                            X_Link,
+                            Mobile_Number,
+                            Designation,
+                            Pub_infu
+                            ) VALUES (
+                            '$main_file',
+                             '$name',
+                             '$des',
+                             '$fb_link',
+                             '$x_link',
+                             '$m_number',
+                             '$designation',
+                             '$pub_info'
+                             )");
+                            if ($insert_data) {
+                                echo '<p>Image uploaded successfully.</p>';
+                                header('location:add-teacher.php');
+                            }
+                            else {
+                                echo '<p>Sorry, there was an error uploading your file.</p>';
+                            }
+                        }
+                    }
+                }
             }
         }
-        ?>
+    }
+    ?>
 
 
         
@@ -129,9 +164,9 @@ if(isset($_SESSION["admin_id"])==false){
             }
             ?>
 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                    <input type="file" class="form-control">
+                    <input type="file" name="img" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="text" name="name" class="form-control"  placeholder="Name">

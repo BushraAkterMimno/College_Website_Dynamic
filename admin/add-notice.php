@@ -50,54 +50,95 @@ if(isset($_SESSION["admin_id"])==false){
     </style>
 </head>
 <body>
-<!-- <nav class="navbar navbar-dark fixed-top nav-color">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="admin.php"><img src="../img/logo/menu-logo.png" height="40px" width="40px"><b>  BHRS COLLEGE</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">BHRS COLLEGE</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <nav class="navbar navbar-dark fixed-top nav-color">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="admin.php"><img src="../img/logo/menu-logo.png" height="40px" width="40px"><b>  BHRS COLLEGE</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">BHRS COLLEGE</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="add-teacher.php">Add Teacher</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="manage-teacher.php">Manage Teacher</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="add-notice.php">Add Notice</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="manage-notice.php">Manage Notice</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="add-photo.php">Add & Delete Photo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="add-teacher.php">Add Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-teacher.php">Manage Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-notice.php">Add Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-notice.php">Manage Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-photo.php">Add & Delete Photo</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav> -->
+    </nav>
 
 
-<?php 
-        if(isset($_POST['btn'])){
-            $userHeadline = $_POST['headline'];
-            $userDescription = $_POST['description'];
-            $userImage = $_POST['image'];
-
-            $sql = "INSERT INTO notice (headline,description,image,,) VALUES ('$userHeadline','$userDescription','$userImage')";
-
-            $insertdata = mysqli_query($conn,$sql);
-            if($insertdata){
-                $msg = "Data Insert Successfully";
-            }
-        }
+    <?php 
+        if (isset($_POST['btn'])) {
+          $headline = $_POST['headline'];
+          $description = $_POST['description'];
+      
+          // handle the image upload
+          $directory = '../img/';
+          $target_file = $directory . basename($_FILES['img']['name']);
+          $main_file = basename($_FILES['img']['name']);
+          $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
+          $file_size = $_FILES['img']['size'];
+          $img = $_FILES['img']['tmp_name'];
+      
+          if (empty($img)) {
+              echo '<p>Please select an image.</p>';
+          }
+          else{
+              if (file_exists($target_file)) {
+                  echo '<p>Image already exists.</p>';
+              }
+              else {
+                  if ($file_size > 2097152) { // 2MB limit
+                      echo '<p>File size is too large. Maximum size is 2MB.</p>';
+                  }
+                  else {
+                      if ($file_type != 'jpg' && $file_type != 'png') {
+                          echo '<p>Please select a JPG or PNG image.</p>';
+                      }
+                      else {
+                          // move the uploaded file to the target directory
+                          if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
+                              // insert data into the database
+                              $insert_data = mysqli_query($conn, "INSERT INTO notice  (
+                              Headline,
+                              Description,
+                              image
+                              ) VALUES (
+                              '$headline',
+                               '$description',
+                               '$main_file'
+                               )");
+                              if ($insert_data) {
+                                  echo '<p>Image uploaded successfully.</p>';
+                                  header('location:add-notice.php');
+                              }
+                              else {
+                                  echo '<p>Sorry, there was an error uploading your file.</p>';
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
     ?>
         
        <div class="container">
@@ -110,7 +151,7 @@ if(isset($_SESSION["admin_id"])==false){
             }
             ?>
 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="text" name="headline" class="form-control"  placeholder="Headline">
                 </div>
@@ -118,7 +159,7 @@ if(isset($_SESSION["admin_id"])==false){
                     <textarea class="form-control" name="description" rows="3" placeholder="Description"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="file" name="designation" class="form-control"  placeholder="Image">
+                    <input type="file" name="img" class="form-control">
                 </div>
                 <button class="btn btn-primary" type="submit" name="btn">Add Notice</button>
             </form>

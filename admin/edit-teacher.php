@@ -11,11 +11,9 @@ if(isset($_SESSION["admin_id"])==false){
 }
 ?>
 
-<?php  
-$student_sl = $_GET['s_id'];
-$sql = "SELECT * FROM teachers_information WHERE Member_Id='$student_sl'";
-$s_data = mysqli_query($conn,$sql);
-$s_show_data = mysqli_fetch_assoc($s_data);
+<?php 
+// Fetch data to display in table
+$tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
 ?>
 
 <!DOCTYPE html>
