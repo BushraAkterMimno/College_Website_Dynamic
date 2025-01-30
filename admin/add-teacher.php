@@ -33,6 +33,9 @@ if(isset($_SESSION["admin_id"])==false){
             margin-right: 120px;
             color: white;
         }
+        .nav-color .logout{
+            margin-left: 830px;
+        }
         .container{
             margin-top: 100px;
         }
@@ -58,6 +61,7 @@ if(isset($_SESSION["admin_id"])==false){
             <a class="navbar-brand" href="admin.php">
                 <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
             </a>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -68,11 +72,11 @@ if(isset($_SESSION["admin_id"])==false){
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav">
-                        <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
+                        <li><a class="nav-link active" href="add-teacher.php">Add Teacher</a></li>
                         <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
                         <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
                         <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
-                        <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
+                        <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
                     </ul>
                 </div>
             </div>
@@ -126,7 +130,7 @@ if(isset($_SESSION["admin_id"])==false){
                             X_Link,
                             Mobile_Number,
                             Designation,
-                            Pub_infu
+                            Pub_info
                             ) VALUES (
                             '$main_file',
                              '$name',
@@ -194,8 +198,6 @@ if(isset($_SESSION["admin_id"])==false){
                 </div>
                 <button class="btn btn-primary" type="submit" name="btn">Add Teacher</button>
             </form>
-            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
-            
         </div>
     
 

@@ -12,6 +12,21 @@ if(isset($_SESSION["admin_id"])==false){
 }
 ?>
 
+<?php
+if (isset($_GET['action']) == 'delete' ) {
+  {
+    $id = $_GET['id'];
+
+    $sql = "DELETE FROM teachers_information WHERE Teachers_ID = '$id'";
+    $delete_item = mysqli_query($conn,$sql);
+    if (isset($delete_item)){
+      echo 'Data Delete Successfully';
+      header('location:manage-teacher.php');
+    }
+  }
+}   
+?>
+
 <?php 
 $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
 if (!$tabledata) {
@@ -40,6 +55,22 @@ if (!$tabledata) {
             margin-right: 120px;
             color: white;
         }
+        .nav-color .logout{
+            margin-left: 800px;
+            /* color: white; */
+        }
+        .logout{
+                /* color: white; */
+                float: right;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                background-color: red;
+            }
+            button a{
+                text-decoration: none;
+                color: white;
+            }
         h2{
           margin-top: 100px;
         }
@@ -67,39 +98,32 @@ if (!$tabledata) {
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top nav-color">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="admin.php"><img src="../img/logo/menu-logo.png" height="40px" width="40px"><b>  BHRS COLLEGE</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">BHRS COLLEGE</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="add-teacher.php">Add Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-teacher.php">Manage Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-notice.php">Add Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-notice.php">Manage Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-photo.php">Add & Delete Photo</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-dark fixed-top nav-color">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="admin.php">
+                <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
+            </a>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
+                <div class="offcanvas-header">
+                    <h5>BHRS COLLEGE</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
+                        <li><a class="nav-link active" href="manage-teacher.php">Manage Teacher</a></li>
+                        <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
+                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
 <h2 style="text-align:center;">Teacher's Information Table</h2>
 <table id="content" border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
@@ -126,21 +150,22 @@ if (!$tabledata) {
                          alt="Image" 
                          style="width:100px; height:100px; object-fit:cover;">
                 </td>
-                <td class="<?php echo ($show_data['Pub_Info'] == 1) ? 'published' : 'unpublished'; ?>">
-                    <?php echo ($show_data['Pub_Info'] == 1) ? 'Published' : 'Unpublished'; ?>
-                </td>
                 <td>
-                    <!-- Delete Link -->
-                    <a href="?action=delete&id=<?php echo htmlspecialchars($show_data['Teachers_Id'], ENT_QUOTES, 'UTF-8'); ?>"
-                       onclick="return confirm('Are you sure you want to delete this record?');"
-                       aria-label="Delete Teacher Record">
-                        <i class="fa-solid fa-trash"></i>
-                    </a>
+                  <?php if ($show_data['Pub_info'] == 1) {
+                    echo '<p style="color:green;">Published</p>';
+                  } else {
+                    echo '<p style="color:red;">Unpublished</p>';
+                  } ?>
+                </td>
 
+                <td>
                     <!-- Edit Link -->
-                    <a href="edit-teacher.php?teachers_id=<?php echo htmlspecialchars($show_data['Teachers_Id'], ENT_QUOTES, 'UTF-8'); ?>"
-                       aria-label="Edit Teacher Record">
+                  <a href="edit-teacher.php?id=<?php echo htmlspecialchars($show_data['Teachers_ID'], ENT_QUOTES, 'UTF-8'); ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <!-- Delete Link -->
+                    <a href="?action=delete&id=<?php echo $show_data['Teachers_ID']; ?>">
+                        <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>
             </tr>

@@ -102,6 +102,21 @@ $tabledata = mysqli_query($conn, "SELECT * FROM photo");
             margin-right: 120px;
             color: white;
         }
+        .nav-color .logout{
+            margin-left: 800px;
+        }
+        .logout{
+                /* color: white; */
+                float: right;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                background-color: red;
+            }
+        button a{
+                text-decoration: none;
+                color: white;
+            }
         form {
             margin-top: 200px;
             background-color: #f9f9f9;
@@ -111,31 +126,32 @@ $tabledata = mysqli_query($conn, "SELECT * FROM photo");
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top nav-color">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="admin.php">
-            <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
-            <div class="offcanvas-header">
-                <h5>BHRS COLLEGE</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
-                    <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
-                    <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
-                    <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
-                    <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
-                </ul>
+    <nav class="navbar navbar-dark fixed-top nav-color">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="admin.php">
+                <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
+            </a>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
+                <div class="offcanvas-header">
+                    <h5>BHRS COLLEGE</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
+                        <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
+                        <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
+                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 <form class="container mt-5" method="post" action="" enctype="multipart/form-data">
     <h3 class="text-center"><i>Image Upload</i></h3>

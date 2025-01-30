@@ -300,7 +300,7 @@ display: block;
         <div class="main">
          <div class="row">
             <div class="col-md-12">
-              <div class="img" style="background-image: url('img/about-us/gellary/bg.webp'); background-size: cover; background-position: center; height: 500px; width: auto">
+              <div class="img" style="background-image: url('img/gellary/bg.webp'); background-size: cover; background-position: center; height: 500px; width: auto">
                 <marquee><h1>WLLCOME TO </h1>
                   <h2> BHRS UNVIRESTY</h2></marquee>
                   <h2><p>Gallery</p></h2>

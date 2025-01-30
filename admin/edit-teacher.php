@@ -35,42 +35,38 @@ $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
             margin-right: 120px;
             color: white;
         }
+        .nav-color .logout{
+            margin-left: 830px;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top nav-color">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="admin.php"><img src="../img/logo/menu-logo.png" height="40px" width="40px"><b>  BHRS COLLEGE</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">BHRS COLLEGE</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="add-teacher.php">Add Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-teacher.php">Manage Teacher</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-notice.php">Add Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="manage-notice.php">Manage Notice</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="add-photo.php">Add & Delete Photo</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-dark fixed-top nav-color">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="admin.php">
+                <img src="../img/logo/menu-logo.png" height="40" width="40"><b> BHRS COLLEGE</b>
+            </a>
+            <button class="logout"><a href="index.php"><b>LogOut</b></a></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" id="offcanvasDarkNavbar">
+                <div class="offcanvas-header">
+                    <h5>BHRS COLLEGE</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
+                        <li><a class="nav-link active" href="manage-teacher.php">Manage Teacher</a></li>
+                        <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
+                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
 
 
 <?php 
