@@ -9,12 +9,15 @@ if(isset($_GET['logout'])){
 if(isset($_SESSION["admin_id"])==false){
     header('location:index.php');
 }
+
+
+$teacher_id =$_GET['id'];
+$sql = "SELECT * FROM teachers_information WHERE Teachers_ID='$teacher_id'";
+$teacher_data = mysqli_query($conn,$sql);
+$teacher_show_data = mysqli_fetch_assoc($teacher_data);
 ?>
 
-<?php 
-// Fetch data to display in table
-$tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +40,27 @@ $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
         }
         .nav-color .logout{
             margin-left: 830px;
+        }
+        .nav-color .logout{
+            margin-left: 800px;
+        }
+        .logout{
+            /* color: white; */
+            float: right;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: red;
+        }
+        button a{
+            text-decoration: none;
+            color: white;
+        }
+        .container{
+            margin-top: 100px;
+        }
+        form div{
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -79,7 +103,7 @@ $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
             $userDesignation = $_POST['designation'];
             $userPubInfo = $_POST['pub_info'];
 
-            $sql = "Update team_member_info SET name='$userName',description='$userDescription',designation='$userDesignation',mobile_number='$userMobileNumber',fb_link='$userFbLink',pub_info='$userPubInfo' WHERE Member_Id='$student_sl'";
+            $sql = "Update  teachers_information SET name='$userName',description='$userDescription',fb_link='$userFbLink',x_link='$userXLink',mobile_number='$userMobileNumber',designation='$userDesignation',pub_info='$userPubInfo' WHERE Teachers_ID='$teacher_id'";
 
             $updatedata = mysqli_query($conn,$sql);
             if($updatedata){
@@ -101,31 +125,31 @@ $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
 
             <form action="" method="post">
                 <div class="form-group">
-                    <input type="text" value="<?php echo $s_show_data['name']; ?>" name="name" class="form-control"  placeholder="Name">
+                    <input type="text" value="<?php echo $teacher_show_data['Name']; ?>" name="name" class="form-control"  placeholder="Name">
                 </div>
 
                 <div class="form-group">
-                    <textarea class="form-control" name="description" rows="3" value="<?php echo $s_show_data['description']; ?>" placeholder="Description"></textarea>
+                <textarea class="form-control" name="description" rows="3" value=""><?php echo $teacher_show_data['Description']; ?></textarea>
                 </div>
 
                 <div class="form-group">
-                    <input type="text" value="<?php echo $s_show_data['fb_link']; ?>" name="fb_link" class="form-control"  placeholder="Facebook Profile Link">
+                    <input type="text" value="<?php echo $teacher_show_data['FB_Link']; ?>" name="fb_link" class="form-control"  placeholder="Facebook Profile Link">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" value="<?php echo $s_show_data['x_link']; ?>" name="x_link" class="form-control"  placeholder="X Profile Link">
+                    <input type="text" value="<?php echo $teacher_show_data['X_Link']; ?>" name="x_link" class="form-control"  placeholder="X Profile Link">
                 </div>
 
                  <div class="form-group">
-                    <input type="number" value="<?php echo $s_show_data['mobile_number']; ?>" name="mobile_number" class="form-control"  placeholder="Mobile Number">
+                    <input type="number" value="<?php echo $teacher_show_data['Mobile_Number']; ?>" name="mobile_number" class="form-control"  placeholder="Mobile Number">
                 </div>
                 
                 <div class="form-group">
-                    <input type="text" value="<?php echo $s_show_data['designation']; ?>" name="designation" class="form-control"  placeholder="Designation">
+                    <input type="text" value="<?php echo $teacher_show_data['Designation']; ?>" name="designation" class="form-control"  placeholder="Designation">
                 </div>
 
                 <div class="form-group">
-                    <input type="file" value="<?php echo $s_show_data['photo']; ?>" name="photo" class="form-control">
+                    <input type="file" value="" name="photo" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -135,7 +159,7 @@ $tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
                     </select>
                 
                 </div>
-                <button class="btn btn-primary" type="submit" name="btn">Add Member</button>
+                <button class="btn btn-primary" type="submit" name="btn">Edit Teacher</button>
         
             </form>
 

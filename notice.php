@@ -328,9 +328,9 @@
                   <h2>BRIEF</h2>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>DATE</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -358,9 +358,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -388,9 +388,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -417,9 +417,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -446,9 +446,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -475,9 +475,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -504,9 +504,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -533,9 +533,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -562,9 +562,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -591,9 +591,9 @@
                   </div>
                 </td>
         
-                <td class="col-md-3">
+                <!-- <td class="col-md-3">
                   <h4>28 Nov,2024</h4> 
-                </td>
+                </td> -->
               </tr>           
             </thead>
           </table>
@@ -622,9 +622,9 @@
             </div>
           </td>
         
-          <td class="col-md-3">
+          <!-- <td class="col-md-3">
             <h4>28 Nov,2024</h4> 
-          </td>
+          </td> -->
         </tr>           
       </thead>
     </table>

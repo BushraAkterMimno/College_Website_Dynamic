@@ -1,6 +1,18 @@
-<?php require 'db.php'; 
-$sl = mysqli_real_escape_string($conn, $_GET['sl']);
-$sql = "SELECT * FROM notice WHERE SL='$sl'";
+<?php require 'db.php';
+
+session_start();
+if(isset($_GET['logout'])){
+    unset($_SESSION["admin_id"]);
+    unset($_SESSION["admin_name"]);
+    header('location:index.php');
+}
+if(isset($_SESSION["admin_id"])==false){
+    header('location:index.php');
+}
+
+
+$notice_id = $_GET['id'];
+$sql = "SELECT * FROM notice WHERE SL='$notice_id'";
 $notice_data = mysqli_query($conn,$sql);
 $notice_show_data = mysqli_fetch_assoc($notice_data);
 ?>
@@ -26,26 +38,50 @@ $notice_show_data = mysqli_fetch_assoc($notice_data);
         .nav-color .logout{
             margin-left: 830px;
         }
+        .nav-color .logout{
+            margin-left: 800px;
+        }
+        .logout{
+                /* color: white; */
+                float: right;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                background-color: red;
+            }
+        button a{
+                text-decoration: none;
+                color: white;
+            }
+            .container{
+                margin-top: 100px;
+            }
+            form div{
+                margin-bottom: 10px;
+            }
+            form .btn-primary{
+                margin-top: 20px;
+            }
     </style>
 </head>
 <body>
 <?php 
         if (isset($_POST['btn'])) {
-            $headline = mysqli_real_escape_string($conn, $_POST['headline']);
-            $description = mysqli_real_escape_string($conn, $_POST['description']);
+            $headline = $_POST["headline"];
+            $description = $_POST["description"];
         
             // File Upload
-            if ($_FILES['image']['name']) {
-                $image = $_FILES['image']['name'];
-                $image_tmp = $_FILES['image']['tmp_name'];
+            if ($_FILES['image']['headline']) {
+                $image = $_FILES['image']['headline'];
+                $image_tmp = $_FILES['image']['tmp_headline'];
                 move_uploaded_file($image_tmp, "uploads/$image");
             } else {
-                $image = $notice_show_data['image']; 
+                $image = $notice_show_data["image"];
             }
 
-            $sql = "UPDATE notice SET name='$headline', description='$description', image='$image' WHERE SL='$sl'";
-            $updatedata = mysqli_query($conn, $sql);
-            if($updatedata){
+            $sql = "UPDATE notice SET headline='$headline', description='$description', image='$image' WHERE SL='$notice_id'";
+            $update_data = mysqli_query($conn, $sql);
+            if($update_data){
                 $msg = "Data Update Successfully";
                 header('refresh: 2, url=view.php');
             }
@@ -77,7 +113,7 @@ $notice_show_data = mysqli_fetch_assoc($notice_data);
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> 
         
        <div class="container">
             <h2>Edit Notice</h2>
@@ -89,15 +125,15 @@ $notice_show_data = mysqli_fetch_assoc($notice_data);
             }
             ?>
 
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" value="<?php echo $notice_show_data['name']; ?>" name="headline" class="form-control"  placeholder="Headline">
+                    <input type="text" value="<?php echo $notice_show_data['Headline']; ?>" name="headline" class="form-control"  placeholder="Headline">
                 </div>
                 <div class="form-group">
-                <textarea class="form-control" name="description" rows="3" value="<?php echo $notice_show_data['description']; ?>"></textarea>
+                <textarea class="form-control" name="description" rows="3" value=""><?php echo $notice_show_data['Description']; ?></textarea>
                 </div>
                 <div class="form-group">
-                <input type="file" value="<?php echo $notice_show_data['image']; ?>" name="image" class="form-control">
+                <input type="file" value="" name="image" class="form-control">
                 </div>
                 <button class="btn btn-primary" type="submit" name="btn">Update Notice</button>
         

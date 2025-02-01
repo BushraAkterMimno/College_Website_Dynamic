@@ -19,9 +19,6 @@ if (!$conn) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply Form</title>
     <style>
-        /* body{
-            font-family: Arial, sans-serif;
-        } */
         body {
             font-family: Arial, sans-serif;
             width: 100%;
@@ -30,7 +27,6 @@ if (!$conn) {
             justify-content: center;
             min-height: 100vh;
             padding: 0 10px;
-            color: white;
         }
         body::before{
             content: "";
@@ -45,9 +41,7 @@ if (!$conn) {
         .main {
             width: 500px;
             height: 690px;
-            /* margin: 70px auto; */
             text-align: center;
-            /* border: 1px solid #ddd; */
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #ffffff80;
@@ -127,11 +121,11 @@ if (!$conn) {
                                 '$main_file'
                                 )");
                                 if ($insert_data) {
-                                    echo '<p style="color:black;">Image uploaded successfully.</p>';
+                                    echo '<p">Image uploaded successfully.</p>';
                                     header('location:apply.php');
                                 }
                                 else {
-                                    echo '<p style="color:black;">Sorry, there was an error uploading your file.</p>';
+                                    echo '<p">Sorry, there was an error uploading your file.</p>';
                                 }
                             }
                         }
@@ -183,7 +177,7 @@ if (!$conn) {
             <p>9. Mobile Number: <input required type="number" name="mobile_number"></p>
             <p>10. E-mail Address: <input required type="email" name="email_address"></p>
             <p>11. Nationality: <input required type="text" name="nationality"></p>
-            <p>12. Image: <input required type="file" name="image"></p>
+            <p>12. Image: <input required type="file" name="img"></p>
             <p><input type="submit" name="btn" value="Submit"></p>
         </form>
     </div>
