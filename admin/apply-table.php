@@ -17,7 +17,7 @@ if (isset($_GET['action']) == 'delete' ) {
   {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM notice WHERE SL = '$id'";
+    $sql = "DELETE FROM apply WHERE SL = '$id'";
     $delete_item = mysqli_query($conn,$sql);
     if (isset($delete_item)){
       echo 'Data Delete Successfully';
@@ -28,7 +28,7 @@ if (isset($_GET['action']) == 'delete' ) {
 ?>
 
 <?php 
-$tabledata = mysqli_query($conn, "SELECT * FROM notice");
+$tabledata = mysqli_query($conn, "SELECT * FROM apply");
 if (!$tabledata) {
     die("Error fetching data: " . mysqli_error($conn));
 }
@@ -39,7 +39,7 @@ if (!$tabledata) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Notice</title>
+    <title>Apply Table</title>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/cdcfc18957.js" crossorigin="anonymous"></script>
     <!-- bootstrap -->
@@ -116,7 +116,7 @@ if (!$tabledata) {
                         <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
                         <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
                         <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
-                        <li><a class="nav-link active" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
                         <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
                         <li><a class="nav-link active" href="apply-table.php">Apply Table</a></li>
                     </ul>
@@ -125,15 +125,23 @@ if (!$tabledata) {
         </div>
     </nav>
 
-<h2 style="text-align:center;">Notice Table</h2>
+<h2 style="text-align:center;">Apply Table</h2>
 <table id="content" border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
     <thead>
         <tr>
-            <th>Teacher Id</th>
-            <th>Headline</th>
-            <th>Description</th>
-            <th>Photo</th>
-            <th>Action</th>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Mother Name</th>
+            <th>Birthday Date</th>
+            <th>Gender</th>
+            <th>Current Address</th>
+            <th>Permanent Address</th>
+            <th>Group</th>
+            <th>Mobile Number</th>
+            <th>Email Address</th>
+            <th>Nationality</th>
+            <th>Image</th>
         </tr>
     </thead>
     <tbody>
@@ -142,22 +150,21 @@ if (!$tabledata) {
         while ($show_data = mysqli_fetch_assoc($tabledata)) { ?>
             <tr>
                 <td><?php echo ++$i; ?></td>
-                <td><?php echo $show_data['Headline']; ?></td>
-                <td><?php echo $show_data['Description']; ?></td>
+                <td><?php echo $show_data['Name']; ?></td>
+                <td><?php echo $show_data['Father_Name']; ?></td>
+                <td><?php echo $show_data['Mother_name']; ?></td>
+                <td><?php echo $show_data['Birthday_Date']; ?></td>
+                <td><?php echo $show_data['Gender']; ?></td>
+                <td><?php echo $show_data['Current_Address']; ?></td>
+                <td><?php echo $show_data['Permanent_Address']; ?></td>
+                <td><?php echo $show_data['Group']; ?></td>
+                <td><?php echo $show_data['Mobile_Number']; ?></td>
+                <td><?php echo $show_data['Email_Address']; ?></td>
+                <td><?php echo $show_data['Nationality']; ?></td>
                 <td>
-                    <img src="../img/<?php echo $show_data['image']; ?>" 
+                    <img src="../img/apply-img/<?php echo $show_data['Image']; ?>" 
                          alt="Image" 
                          style="width:100px; height:100px; object-fit:cover;">
-                </td>
-                <td>
-                  <!-- Edit Link -->
-                  <a href="edit-notice.php?id=<?php echo $show_data['SL']; ?>">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
-                    <!-- Delete Link -->
-                    <a href="?action=delete&id=<?php echo $show_data['SL']; ?>">
-                        <i class="fa-solid fa-trash"></i>
-                    </a>
                 </td>
             </tr>
         <?php } ?>
