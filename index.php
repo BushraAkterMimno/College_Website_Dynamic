@@ -1,3 +1,8 @@
+<?php
+require 'admin/db.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,10 +121,10 @@
                             <h3>Professor Abu Zafar Mohammad Arif Hossain</h3>
                             <br>
                             <h5>Principal, BHRS College, Brahmanbaria.</h5>
-                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter"></i></i></a>
-                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
-                            <a href="#"><i class="fa-solid fa-phone"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook" title="Facebook Profile"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter" title="X Profile"></i></i></a>
+                            <a href="#"><i class="fa-solid fa-envelope" title="Email Profile"></i></a>
+                            <a href="#"><i class="fa-solid fa-phone" title="Phone Number"></i></a>
                             <br>
                             <br>
                             <p>BHRS College is the largest educational institution in the Brahmanbaria district. With more than fifteen thousand students, the institution offers programs in Higher Secondary, Bachelor’s (Pass), Bachelor’s (Honors), Preliminary to Master’s, and Master’s levels.
@@ -138,7 +143,6 @@
          <!-- principal div end -->
 
 
-
          <!-- gallery section start -->
 
          <section class="gallery" title="Photo Gallery">
@@ -146,10 +150,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a class="example-image-link" href="img/about-us/gellary/gellary-pic (1).jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (1).jpg" alt=""/></a>
-                        <a class="example-image-link" href="img/about-us/gellary/gellary-pic (2).jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (2).jpg" alt="" /></a>
-                        <a class="example-image-link" href="img/about-us/gellary/gellary-pic (3).jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (3).jpg" alt="" /></a>
-                        <a class="example-image-link" href="img/about-us/gellary/gellary-pic (4).jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" height="300px" width="300px" src="img/about-us/gellary/gellary-pic (4).jpg" alt="" /></a>
+                    <?php $img_sql= mysqli_query($conn,"SELECT * FROM photo LIMIT 4");
+                ?>
+                <?php while($photo_info=mysqli_fetch_assoc($img_sql)){ ?>
+                <a class="example-image-link" href="img/gallery-img/<?php echo $photo_info['photo']; ?>" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" height="300px" width="300px" src="img/gallery-img/<?php echo $photo_info['photo']; ?>" alt=""/></a>
+                <?php } ?>
                     </div>
                 </div>
             </div>
@@ -164,148 +169,60 @@
 
           <section class="notice" title="Notice Board">
             <h1><u>NOTICE BOARD</u></h1>
+            <table id="content" border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+                <tr>
+                  <td>
+                  SERIAL NUMBER 
+                  </td>
+          
+                  <td>
+                   Headline
+                  </td>
+          
+                  <td>
+                    DATE
+                  </td> 
+                </tr> 
 
-            <section class="middle1">
-                <div class="container">
-                  <div class="row">
-                    <table>
-                      <thead>
-                        <tr>
-                          <td class="col-md-2">
-                            <h4>SERIAL NUMBER</h4>  
-                          </td>
-                  
-                          <td class="col-md-7">
-                            <h2>BRIEF</h2>
-                          </td>
-                  
-                          <td class="col-md-3">
-                            <h4>DATE</h4> 
-                          </td>
-                        </tr>           
-                      </thead>
-                    </table>
-                  </div>
-                </div>   
-              </section>
+                <?php
+                  $sql = "SELECT * FROM notice LIMIT 3";
+                  $notice_data= mysqli_query($conn,$sql);
+                ?>
+                <?php $i=1; while($show_data=mysqli_fetch_assoc($notice_data)) { ?>
 
-        <section class="middle2">
-          <div class="container">
-            <div class="row">
-              <table>
-                <thead>
-                  <tr>
-                    <td class="col-md-2">
-                      <h4>1</h4>  
+                <tr>
+                <td>
+                      <h4><?php echo $i++; ?></h4>  
                     </td>
             
-                    <td class="col-md-7">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        <b>Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</b>
-                    </button>
-                  </h2>
-                  <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div class="panel">
-                            <hr>
-                            <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                            <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
+                    <td>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          
+                            <b><a  target="_blank" href="img/<?php echo $show_data['image']  ?>"><?php echo $show_data['Headline']; ?></a></b>
+                       
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                              <div class="panel">
+                                <hr>
+                                <p><?php echo $show_data['Description']; ?></p> 
+                                <p><a href="img/<?php echo $show_data['image']  ?>"><p>Img</p></a></p>
+                                <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
+                              </div>
+                            </div>
                           </div>
-                    </div>
-                  </div>
-                </div>
-            </td>
+                        </div>
+                      </td>
             
-                    <td class="col-md-3">
+                 <td>
                       <h4>28 Nov,2024</h4> 
-                    </td>
-                  </tr>           
-                </thead>
-              </table>
-            </div>
-          </div>   
-        </section>
+                    </td> 
+                </tr>
+                <?php } ?>
+            </table>
 
-        <section class="middle2">
-            <div class="container">
-              <div class="row">
-                <table>
-                  <thead>
-                    <tr>
-                      <td class="col-md-2">
-                        <h4>2</h4>  
-                      </td>
-              
-                      <td class="col-md-7">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        <b>Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</b>
-                    </button>
-                  </h2>
-                  <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div class="panel">
-                            <hr>
-                            <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                            <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                          </div>
-                    </div>
-                  </div>
-                </div>
-            </td>
-              
-                      <td class="col-md-3">
-                        <h4>28 Nov,2024</h4> 
-                      </td>
-                    </tr>           
-                  </thead>
-                </table>
-              </div>
-            </div>   
-          </section>
 
-          <section class="middle2">
-            <div class="container">
-              <div class="row">
-                <table>
-                  <thead>
-                    <tr>
-                      <td class="col-md-2">
-                        <h4>3</h4>  
-                      </td>
-              
-                      <td class="col-md-7">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        <b>Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</b>
-                    </button>
-                  </h2>
-                  <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div class="panel">
-                            <hr>
-                            <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                            <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                          </div>
-                    </div>
-                  </div>
-                </div>
-            </td>
-              
-                      <td class="col-md-3">
-                        <h4>28 Nov,2024</h4> 
-                      </td>
-                    </tr>           
-                  </thead>
-                </table>
-              </div>
-            </div>   
-          </section>
-        </section>
 
         <!-- notice section end -->
 

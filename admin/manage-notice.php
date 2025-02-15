@@ -118,6 +118,7 @@ if (!$tabledata) {
                         <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
                         <li><a class="nav-link active" href="manage-notice.php">Manage Notice</a></li>
                         <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
+                        <li><a class="nav-link" href="apply-table.php">Apply Table</a></li>
                     </ul>
                 </div>
             </div>

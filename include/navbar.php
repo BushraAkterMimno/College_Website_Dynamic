@@ -10,7 +10,7 @@
                         </div>
                         <div id="nav">
                             <ul>
-                                <li class="padding"><a href="home.php">Home</a></li>
+                                <li class="padding"><a href="index.php">Home</a></li>
                                 <li><a href="#">About Us &raquo;</a>
                                     <ul>
                                         <li><a href="brief-history.php">Brief History</a></li>

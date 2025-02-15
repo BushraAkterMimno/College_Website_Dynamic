@@ -1,3 +1,12 @@
+<?php
+require 'admin/db.php';
+?>
+
+<?php
+$sql = "SELECT * FROM teachers_information WHERE Pub_info=1";
+$teacher_data= mysqli_query($conn,$sql);
+?>
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -88,19 +97,21 @@
             </section> 
             <section>
                 <div class="faculty-container">
+                <?php while($show_data=mysqli_fetch_assoc($teacher_data)) { ?>
+                    <?php $sql = "SELECT * FROM teachers_information WHERE Designation=Professor"; ?>
                     <div class="faculty-card">
-                        <img src="img/faculty-img/teacher-m.png" alt="Professor of Accounting">
-                            <h3>Professor Abu Zafar Mohammad Arif Hossain.</h3>
-                            <p>(Attached Officer)</p>
+                        <img src="<?php echo $show_data['image']; ?>" alt="Professor of Accounting">
+                            <h3><?php echo $show_data['Name']; ?></h3>
+                            <p>(<?php echo $show_data['Description']; ?>)</p>
                             <div class="social-link">
-                                <a href="#"><img src="img/faculty-img/facebook.png" style="height:30px; width:35px"alt=""></a>
-                                <a href="#"><img src="img/faculty-img/x.png" style="height:30px; width:35px" alt=""></a>
-                                <a href="#"><img src="img/faculty-img/phone.png" style="height:30px; width:35px" alt=""></a>
-                                <p>Prof. of Economics</p>
+                                <a href="<?php echo $show_data['FB_Link']; ?>"><img src="img/faculty-img/facebook.png" style="height:30px; width:35px"alt=""></a>
+                                <a href="<?php echo $show_data['X_Link']; ?>"><img src="img/faculty-img/x.png" style="height:30px; width:35px" alt=""></a>
+                                <a href="<?php echo $show_data['Mobile_Number']; ?>"><img src="img/faculty-img/phone.png" style="height:30px; width:35px" alt=""></a>
+                                <p><?php echo $show_data['Designation']; ?></p>
                             </div>
                     </div>
             
-                    <div class="faculty-card">
+                    <!-- <div class="faculty-card">
                         <img src="img/faculty-img/teacher-m.png" alt="Professor of Accounting">
                         <h3>Professor Md. Khairul Bashar Majumdar.</h3>
                         <p>(Attached Officer)</p>
@@ -121,7 +132,8 @@
                             <a href="#"><img src="img/faculty-img/phone.png" style="height:30px; width:35px" alt=""></a>
                             <p>Prof. of Management</p>
                         </div>
-                    </div>
+                    </div> -->
+                    <?php } ?>
                 </div>
             </section>
 

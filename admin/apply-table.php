@@ -17,18 +17,18 @@ if (isset($_GET['action']) == 'delete' ) {
   {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM teachers_information WHERE Teachers_ID = '$id'";
+    $sql = "DELETE FROM notice WHERE SL = '$id'";
     $delete_item = mysqli_query($conn,$sql);
     if (isset($delete_item)){
       echo 'Data Delete Successfully';
-      header('location:manage-teacher.php');
+      header('location:manage-notice.php');
     }
   }
 }   
 ?>
 
 <?php 
-$tabledata = mysqli_query($conn, "SELECT * FROM teachers_information");
+$tabledata = mysqli_query($conn, "SELECT * FROM notice");
 if (!$tabledata) {
     die("Error fetching data: " . mysqli_error($conn));
 }
@@ -39,7 +39,7 @@ if (!$tabledata) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Teacher</title>
+    <title>Manage Notice</title>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/cdcfc18957.js" crossorigin="anonymous"></script>
     <!-- bootstrap -->
@@ -57,7 +57,6 @@ if (!$tabledata) {
         }
         .nav-color .logout{
             margin-left: 800px;
-            /* color: white; */
         }
         .logout{
                 /* color: white; */
@@ -67,7 +66,7 @@ if (!$tabledata) {
                 border: none;
                 background-color: red;
             }
-            button a{
+        button a{
                 text-decoration: none;
                 color: white;
             }
@@ -115,26 +114,25 @@ if (!$tabledata) {
                 <div class="offcanvas-body">
                     <ul class="navbar-nav">
                         <li><a class="nav-link" href="add-teacher.php">Add Teacher</a></li>
-                        <li><a class="nav-link active" href="manage-teacher.php">Manage Teacher</a></li>
+                        <li><a class="nav-link" href="manage-teacher.php">Manage Teacher</a></li>
                         <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
-                        <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
+                        <li><a class="nav-link active" href="manage-notice.php">Manage Notice</a></li>
                         <li><a class="nav-link" href="add-photo.php">Add & Delete Photo</a></li>
-                        <li><a class="nav-link" href="apply-table.php">Apply Table</a></li>
+                        <li><a class="nav-link active" href="apply-table.php">Apply Table</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
 
-<h2 style="text-align:center;">Teacher's Information Table</h2>
+<h2 style="text-align:center;">Notice Table</h2>
 <table id="content" border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
     <thead>
         <tr>
             <th>Teacher Id</th>
-            <th>Name</th>
-            <th>Designation</th>
+            <th>Headline</th>
+            <th>Description</th>
             <th>Photo</th>
-            <th>Pub Info</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -144,28 +142,20 @@ if (!$tabledata) {
         while ($show_data = mysqli_fetch_assoc($tabledata)) { ?>
             <tr>
                 <td><?php echo ++$i; ?></td>
-                <td><?php echo htmlspecialchars($show_data['Name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                <td><?php echo htmlspecialchars($show_data['Designation'], ENT_QUOTES, 'UTF-8'); ?></td>
+                <td><?php echo $show_data['Headline']; ?></td>
+                <td><?php echo $show_data['Description']; ?></td>
                 <td>
-                    <img src="../img/<?php echo htmlspecialchars($show_data['image'], ENT_QUOTES, 'UTF-8'); ?>" 
+                    <img src="../img/<?php echo $show_data['image']; ?>" 
                          alt="Image" 
                          style="width:100px; height:100px; object-fit:cover;">
                 </td>
                 <td>
-                  <?php if ($show_data['Pub_info'] == 1) {
-                    echo '<p style="color:green;">Published</p>';
-                  } else {
-                    echo '<p style="color:red;">Unpublished</p>';
-                  } ?>
-                </td>
-
-                <td>
-                    <!-- Edit Link -->
-                  <a href="edit-teacher.php?id=<?php echo htmlspecialchars($show_data['Teachers_ID'], ENT_QUOTES, 'UTF-8'); ?>">
+                  <!-- Edit Link -->
+                  <a href="edit-notice.php?id=<?php echo $show_data['SL']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <!-- Delete Link -->
-                    <a href="?action=delete&id=<?php echo $show_data['Teachers_ID']; ?>">
+                    <a href="?action=delete&id=<?php echo $show_data['SL']; ?>">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>

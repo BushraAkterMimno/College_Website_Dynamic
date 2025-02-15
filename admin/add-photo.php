@@ -147,6 +147,7 @@ $tabledata = mysqli_query($conn, "SELECT * FROM photo");
                         <li><a class="nav-link" href="add-notice.php">Add Notice</a></li>
                         <li><a class="nav-link" href="manage-notice.php">Manage Notice</a></li>
                         <li><a class="nav-link active" href="add-photo.php">Add & Delete Photo</a></li>
+                        <li><a class="nav-link" href="apply-table.php">Apply Table</a></li>
                     </ul>
                 </div>
             </div>

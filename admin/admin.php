@@ -100,6 +100,7 @@ if(isset($_SESSION["admin_id"])==false){
             <a href="manage-notice.php"><button type="button" class="btn btn-lg"><b>Manage Notice <i class="fa-duotone fa-regular fa-memo-circle-info"></i><b></button></a>
             <br>
             <a href="add-photo.php"><button type="button" class="btn btn-lg"><b>Add & Delete Photo <i class="fa-solid fa-image"></i></b></button></a>
+            <a href="apply-table.php"><button type="button" class="btn btn-lg"><b>Apply Table <i class="fa-solid fa-rectangle-list"></i></i></b></button></a>
             <button class="logout"><a href="index.php"><h5><b>LogOut</b></h5></a></button>
         </section>
     </div>

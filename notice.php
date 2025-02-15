@@ -1,3 +1,9 @@
+<?php require 'admin/db.php' ?>
+<?php
+$sql = "SELECT * FROM notice";
+$notice_data= mysqli_query($conn,$sql);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -339,7 +345,7 @@
     </section>
 
      
-    
+    <?php $i=0; while($show_data=mysqli_fetch_assoc($notice_data)) { ?>
     <section class="middle2">
       <div class="container">
         <div class="row">
@@ -347,13 +353,13 @@
             <thead>
               <tr>
                 <td class="col-md-2">
-                  <h4>1</h4>  
+                  <h4><?php echo $i++; ?></h4>  
                 </td>
         
                 <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
+                  <button class="accordion"><?php echo $show_data['Headline']; ?></button>
                   <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
+                  <p><?php echo $show_data['Description']; ?></p> 
                     <p><a href="img/notice/notice.png"><p>Img</p></a></p>
                     <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
                   </div>
@@ -368,279 +374,8 @@
         </div>
       </div>   
     </section>
+    <?php } ?>
     
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>2</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>3</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>4</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>5</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>6</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>7</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>8</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-                  <h4>9</h4>  
-                </td>
-        
-                <td class="col-md-7">
-                  <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-                  <div class="panel">
-                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-                    <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-                    <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-                  </div>
-                </td>
-        
-                <!-- <td class="col-md-3">
-                  <h4>28 Nov,2024</h4> 
-                </td> -->
-              </tr>           
-            </thead>
-          </table>
-        </div>
-      </div>   
-    </section>
-    
-    
-    
-    
-    <section class="middle2">
-      <div class="container">
-        <div class="row">
-          <table>
-            <thead>
-              <tr>
-                <td class="col-md-2">
-      <h4>10</h4>  
-        </td>
-        
-        <td class="col-md-7">
-            <button class="accordion">Notice regarding extension of time for filling the Masters Final Year Examination Form 2022</button>
-            <div class="panel">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores necessitatibus nihil eaque cupiditate repudiandae ipsam, facilis veritatis dolores ipsum cumque recusandae quos ipsa pariatur illo labore quidem et at autem?</p> 
-              <p><a href="img/notice/notice.png"><p>Img</p></a></p>
-              <a href="Notice-Template.pdf"><button class="btn btn-danger" target="blank" downloaded>Download</button></a>
-            </div>
-          </td>
-        
-          <!-- <td class="col-md-3">
-            <h4>28 Nov,2024</h4> 
-          </td> -->
-        </tr>           
-      </thead>
-    </table>
-  </div>
-</div>   
-</section>
 
 <!-- footer start -->
 

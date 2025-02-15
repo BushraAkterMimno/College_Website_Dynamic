@@ -1,16 +1,84 @@
 <?php 
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = 'college_batabase';
-$conn = mysqli_connect($hostname,$username,$password,$dbname);
-?>
+require 'admin/db.php';
 
-<?php 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+if (isset($_POST['btn'])) {
+    $userName = mysqli_real_escape_string($conn, $_POST['name']);
+    $userFatherName = mysqli_real_escape_string($conn, $_POST['father_name']);
+    $userMotherName = mysqli_real_escape_string($conn, $_POST['mother_name']);
+    $userBirthdayDate = $_POST['birthday_date'];
+    $userGender = $_POST['gender'];
+    $userCurrentAddress = mysqli_real_escape_string($conn, $_POST['current_address']);
+    $userPermanentAddress = mysqli_real_escape_string($conn, $_POST['permanent_address']);
+    $userGroup = $_POST['group'];
+    $userMobileNumber = mysqli_real_escape_string($conn, $_POST['mobile_number']);
+    $userEmailAddress = mysqli_real_escape_string($conn, $_POST['email_address']);
+    $userNationality = mysqli_real_escape_string($conn, $_POST['nationality']);
+
+    $errors = [];
+
+    // File Handling
+    if (!empty($_FILES['img']['name'])) {
+        $directory = 'img/apply-img/';
+        $file_name = time() . '_' . basename($_FILES['img']['name']); // Unique name
+        $target_file = $directory . $file_name;
+        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $file_size = $_FILES['img']['size'];
+        $img = $_FILES['img']['tmp_name'];
+
+        // Validate Image
+        $allowed_types = ['jpg', 'jpeg', 'png'];
+        $check = getimagesize($img);
+        
+        if (!$check) {
+            $errors[] = "File is not an image.";
+        } elseif (!in_array($file_type, $allowed_types)) {
+            $errors[] = "Only JPG, JPEG, and PNG files are allowed.";
+        } elseif ($file_size > 2097152) {
+            $errors[] = "File size should not exceed 2MB.";
+        } elseif (file_exists($target_file)) {
+            $errors[] = "File already exists.";
+        }
+
+        // If no errors, move file
+        if (empty($errors) && move_uploaded_file($img, $target_file)) {
+            // Insert Data using Prepared Statement
+            $stmt = $conn->prepare("INSERT INTO apply 
+            (Name, Father_Name, Mother_name, Birthday_Date, Gender, Current_Address, Permanent_Address, `Group`, Mobile_Number, Email_Address, Nationality, Image) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssssssss", 
+                $userName, $userFatherName, $userMotherName, 
+                $userBirthdayDate, $userGender, 
+                $userCurrentAddress, $userPermanentAddress, 
+                $userGroup, $userMobileNumber, 
+                $userEmailAddress, $userNationality, 
+                $file_name
+            );
+
+            if ($stmt->execute()) {
+                echo '<p style="color:green;">Application submitted successfully.</p>';
+                header("Location: apply.php");
+                exit();
+            } else {
+                $errors[] = "Database error: " . $conn->error;
+            }
+        }
+    } else {
+        $errors[] = "Please select an image.";
+    }
+
+    // Display Errors
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+            echo '<p style="color:red;">' . $error . '</p>';
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,89 +121,6 @@ if (!$conn) {
 </head>
 <body>
 
-    <?php 
-        if(isset($_POST['btn'])){
-            $userName = $_POST['name'];
-            $userFatherName = $_POST['father_name'];
-            $userMotherName = $_POST['mother_name'];
-            $userBirthdayDate = $_POST['birthday_date'];
-            $userGender = $_POST['gender'];
-            $userCurrentAddress = $_POST['current_address'];
-            $userPermanentAddress = $_POST['permanent_address'];
-            $userGroup = $_POST['group'];
-            $userMobileNumber = $_POST['mobile_number'];
-            $userEmailAddress = $_POST['email_address'];
-            $userNationality = $_POST['nationality'];
-            
-            
-            $directory = 'img/apply-img/';
-            $target_file = $directory . basename($_FILES['img']['name']);
-            $main_file = basename($_FILES['img']['name']);
-            $file_type = pathinfo($target_file, PATHINFO_EXTENSION);
-            $file_size = $_FILES['img']['size'];
-            $img = $_FILES['img']['tmp_name'];
-            
-            if (empty($img)) {
-                echo '<p style="color:black;">Please select an image.</p>';
-            }
-            else{
-                if (file_exists($target_file)) {
-                    echo '<p style="color:black;">Image already exists.</p>';
-                }
-                else {
-                    if ($file_size > 2097152) { // 2MB limit
-                        echo '<p style="color:black;">File size is too large. Maximum size is 2MB.</p>';
-                    }
-                    else {
-                        if ($file_type != 'jpg' && $file_type != 'png') {
-                            echo '<p style="color:black;">Please select a JPG or PNG image.</p>';
-                        }
-                        else {
-                            // move the uploaded file to the target directory
-                            if (move_uploaded_file($_FILES['img']['tmp_name'], $target_file)) {
-                                // insert data into the database
-                                $insert_data = mysqli_query($conn, "INSERT INTO  apply  (
-                                Name,
-                                Father_Name,
-                                Mother_name,
-                                Birthday_Date,
-                                Gender,
-                                Current_Address,
-                                Permanent_Address,
-                                Group,Mobile_Number,
-                                Email_Address,
-                                Nationality,
-                                Image
-                                ) VALUES (
-                                '$userName',
-                                '$userFatherName',
-                                '$userMotherName',
-                                '$userBirthdayDate',
-                                '$userGender',
-                                '$userCurrentAddress',
-                                '$userPermanentAddress',
-                                '$userGroup',
-                                '$userMobileNumber',
-                                '$userEmailAddress',
-                                '$userNationality',
-                                '$main_file'
-                                )");
-                                if ($insert_data) {
-                                    echo '<p">Image uploaded successfully.</p>';
-                                    header('location:apply.php');
-                                }
-                                else {
-                                    echo '<p">Sorry, there was an error uploading your file.</p>';
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    ?>
-
-
     <div class="main">
         <img src="img/logo/menu-logo.png" height="40px" width="40px">
         <p><b>BHRS COLLEGE</b></p>
@@ -143,14 +128,6 @@ if (!$conn) {
         <h4>Fillup the form and Submit to the committee</h4>
         <hr>
         <br>
-
-        <?php 
-            if(isset($msg)){
-                echo $msg;
-                unset($msg);
-            }
-        ?>
-
 
         <form method="post" action="" enctype="multipart/form-data">
             <p>1. Name: <input required type="text" name="name"></p>

@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer" title="Footer Navbar">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 about_padding">
